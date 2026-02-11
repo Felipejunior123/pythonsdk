@@ -15,10 +15,10 @@
 
 import unittest
 
-from templatefox.models.account_info_response import AccountInfoResponse
+from templatefox.models.template_field_spec import TemplateFieldSpec
 
-class TestAccountInfoResponse(unittest.TestCase):
-    """AccountInfoResponse unit test stubs"""
+class TestTemplateFieldSpec(unittest.TestCase):
+    """TemplateFieldSpec unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,27 +26,29 @@ class TestAccountInfoResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> AccountInfoResponse:
-        """Test AccountInfoResponse
+    def make_instance(self, include_optional) -> TemplateFieldSpec:
+        """Test TemplateFieldSpec
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `AccountInfoResponse`
+        # uncomment below to create an instance of `TemplateFieldSpec`
         """
-        model = AccountInfoResponse()
+        model = TemplateFieldSpec()
         if include_optional:
-            return AccountInfoResponse(
-                credits = 56,
-                email = ''
+            return TemplateFieldSpec(
+                name = '',
+                label = '',
+                type = 'text'
             )
         else:
-            return AccountInfoResponse(
-                credits = 56,
+            return TemplateFieldSpec(
+                name = '',
+                label = '',
         )
         """
 
-    def testAccountInfoResponse(self):
-        """Test AccountInfoResponse"""
+    def testTemplateFieldSpec(self):
+        """Test TemplateFieldSpec"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 
