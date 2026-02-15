@@ -18,22 +18,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from typing import Any, ClassVar, Dict, List
+from templatefox.models.job_status_response import JobStatusResponse
 from typing import Optional, Set
 from typing_extensions import Self
 
-class Transaction(BaseModel):
+class JobListResponse(BaseModel):
     """
-    Transaction record
+    Response for job list query
     """ # noqa: E501
-    transaction_ref: StrictStr = Field(description="Unique transaction reference (UUID)")
-    transaction_type: StrictStr = Field(description="Transaction type: PDFGEN, PURCHASE, REFUND, BONUS")
-    template_id: Optional[StrictStr] = None
-    exec_tm: Optional[StrictInt] = None
-    credits: StrictInt = Field(description="Credits consumed (positive) or added (negative)")
-    created_at: StrictStr = Field(description="ISO 8601 timestamp")
-    __properties: ClassVar[List[str]] = ["transaction_ref", "transaction_type", "template_id", "exec_tm", "credits", "created_at"]
+    jobs: List[JobStatusResponse] = Field(description="List of jobs")
+    total: StrictInt = Field(description="Total number of jobs matching filter")
+    limit: StrictInt = Field(description="Page size")
+    offset: StrictInt = Field(description="Page offset")
+    __properties: ClassVar[List[str]] = ["jobs", "total", "limit", "offset"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +52,7 @@ class Transaction(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Transaction from a JSON string"""
+        """Create an instance of JobListResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,21 +73,18 @@ class Transaction(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if template_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.template_id is None and "template_id" in self.model_fields_set:
-            _dict['template_id'] = None
-
-        # set to None if exec_tm (nullable) is None
-        # and model_fields_set contains the field
-        if self.exec_tm is None and "exec_tm" in self.model_fields_set:
-            _dict['exec_tm'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of each item in jobs (list)
+        _items = []
+        if self.jobs:
+            for _item_jobs in self.jobs:
+                if _item_jobs:
+                    _items.append(_item_jobs.to_dict())
+            _dict['jobs'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Transaction from a dict"""
+        """Create an instance of JobListResponse from a dict"""
         if obj is None:
             return None
 
@@ -96,12 +92,10 @@ class Transaction(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "transaction_ref": obj.get("transaction_ref"),
-            "transaction_type": obj.get("transaction_type"),
-            "template_id": obj.get("template_id"),
-            "exec_tm": obj.get("exec_tm"),
-            "credits": obj.get("credits"),
-            "created_at": obj.get("created_at")
+            "jobs": [JobStatusResponse.from_dict(_item) for _item in obj["jobs"]] if obj.get("jobs") is not None else None,
+            "total": obj.get("total"),
+            "limit": obj.get("limit"),
+            "offset": obj.get("offset")
         })
         return _obj
 

@@ -19,21 +19,19 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
+from templatefox.models.job_status import JobStatus
 from typing import Optional, Set
 from typing_extensions import Self
 
-class Transaction(BaseModel):
+class CreateAsyncPdfResponse(BaseModel):
     """
-    Transaction record
+    Response for async PDF creation
     """ # noqa: E501
-    transaction_ref: StrictStr = Field(description="Unique transaction reference (UUID)")
-    transaction_type: StrictStr = Field(description="Transaction type: PDFGEN, PURCHASE, REFUND, BONUS")
-    template_id: Optional[StrictStr] = None
-    exec_tm: Optional[StrictInt] = None
-    credits: StrictInt = Field(description="Credits consumed (positive) or added (negative)")
-    created_at: StrictStr = Field(description="ISO 8601 timestamp")
-    __properties: ClassVar[List[str]] = ["transaction_ref", "transaction_type", "template_id", "exec_tm", "credits", "created_at"]
+    job_id: StrictStr = Field(description="Unique job identifier for status polling")
+    status: JobStatus = Field(description="Initial job status (always 'pending')")
+    credits_remaining: StrictInt = Field(description="Remaining credits after this request")
+    __properties: ClassVar[List[str]] = ["job_id", "status", "credits_remaining"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +51,7 @@ class Transaction(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Transaction from a JSON string"""
+        """Create an instance of CreateAsyncPdfResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,21 +72,11 @@ class Transaction(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if template_id (nullable) is None
-        # and model_fields_set contains the field
-        if self.template_id is None and "template_id" in self.model_fields_set:
-            _dict['template_id'] = None
-
-        # set to None if exec_tm (nullable) is None
-        # and model_fields_set contains the field
-        if self.exec_tm is None and "exec_tm" in self.model_fields_set:
-            _dict['exec_tm'] = None
-
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Transaction from a dict"""
+        """Create an instance of CreateAsyncPdfResponse from a dict"""
         if obj is None:
             return None
 
@@ -96,12 +84,9 @@ class Transaction(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "transaction_ref": obj.get("transaction_ref"),
-            "transaction_type": obj.get("transaction_type"),
-            "template_id": obj.get("template_id"),
-            "exec_tm": obj.get("exec_tm"),
-            "credits": obj.get("credits"),
-            "created_at": obj.get("created_at")
+            "job_id": obj.get("job_id"),
+            "status": obj.get("status"),
+            "credits_remaining": obj.get("credits_remaining")
         })
         return _obj
 

@@ -15,10 +15,10 @@
 
 import unittest
 
-from templatefox.models.create_pdf_request import CreatePdfRequest
+from templatefox.models.create_async_pdf_request import CreateAsyncPdfRequest
 
-class TestCreatePdfRequest(unittest.TestCase):
-    """CreatePdfRequest unit test stubs"""
+class TestCreateAsyncPdfRequest(unittest.TestCase):
+    """CreateAsyncPdfRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,16 +26,16 @@ class TestCreatePdfRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> CreatePdfRequest:
-        """Test CreatePdfRequest
+    def make_instance(self, include_optional) -> CreateAsyncPdfRequest:
+        """Test CreateAsyncPdfRequest
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `CreatePdfRequest`
+        # uncomment below to create an instance of `CreateAsyncPdfRequest`
         """
-        model = CreatePdfRequest()
+        model = CreateAsyncPdfRequest()
         if include_optional:
-            return CreatePdfRequest(
+            return CreateAsyncPdfRequest(
                 template_id = '01234567891011',
                 data = { },
                 export_type = 'url',
@@ -43,17 +43,19 @@ class TestCreatePdfRequest(unittest.TestCase):
                 filename = '2',
                 store_s3 = True,
                 s3_filepath = '/',
-                s3_bucket = 'wwat4ikwowtta-2mh1lcafqw2zhes0012'
+                s3_bucket = 'wwat4ikwowtta-2mh1lcafqw2zhes0012',
+                webhook_url = '0',
+                webhook_secret = '0123456789101112131415'
             )
         else:
-            return CreatePdfRequest(
+            return CreateAsyncPdfRequest(
                 template_id = '01234567891011',
                 data = { },
         )
         """
 
-    def testCreatePdfRequest(self):
-        """Test CreatePdfRequest"""
+    def testCreateAsyncPdfRequest(self):
+        """Test CreateAsyncPdfRequest"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -15,10 +15,10 @@
 
 import unittest
 
-from templatefox.models.http_validation_error import HTTPValidationError
+from templatefox.models.create_async_pdf_response import CreateAsyncPdfResponse
 
-class TestHTTPValidationError(unittest.TestCase):
-    """HTTPValidationError unit test stubs"""
+class TestCreateAsyncPdfResponse(unittest.TestCase):
+    """CreateAsyncPdfResponse unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,32 +26,30 @@ class TestHTTPValidationError(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> HTTPValidationError:
-        """Test HTTPValidationError
+    def make_instance(self, include_optional) -> CreateAsyncPdfResponse:
+        """Test CreateAsyncPdfResponse
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `HTTPValidationError`
+        # uncomment below to create an instance of `CreateAsyncPdfResponse`
         """
-        model = HTTPValidationError()
+        model = CreateAsyncPdfResponse()
         if include_optional:
-            return HTTPValidationError(
-                detail = [
-                    templatefox.models.validation_error.ValidationError(
-                        loc = [
-                            null
-                            ], 
-                        msg = '', 
-                        type = '', )
-                    ]
+            return CreateAsyncPdfResponse(
+                job_id = '',
+                status = 'pending',
+                credits_remaining = 56
             )
         else:
-            return HTTPValidationError(
+            return CreateAsyncPdfResponse(
+                job_id = '',
+                status = 'pending',
+                credits_remaining = 56,
         )
         """
 
-    def testHTTPValidationError(self):
-        """Test HTTPValidationError"""
+    def testCreateAsyncPdfResponse(self):
+        """Test CreateAsyncPdfResponse"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

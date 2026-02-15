@@ -15,25 +15,20 @@
 
 import unittest
 
-from templatefox.api.pdf_api import PDFApi
+from templatefox.models.app_routers_v1_pdf_async_export_type import AppRoutersV1PdfAsyncExportType
 
+class TestAppRoutersV1PdfAsyncExportType(unittest.TestCase):
+    """AppRoutersV1PdfAsyncExportType unit test stubs"""
 
-class TestPDFApi(unittest.TestCase):
-    """PDFApi unit test stubs"""
-
-    def setUp(self) -> None:
-        self.api = PDFApi()
-
-    def tearDown(self) -> None:
+    def setUp(self):
         pass
 
-    def test_create_pdf(self) -> None:
-        """Test case for create_pdf
-
-        Generate PDF from template
-        """
+    def tearDown(self):
         pass
 
+    def testAppRoutersV1PdfAsyncExportType(self):
+        """Test AppRoutersV1PdfAsyncExportType"""
+        # inst = AppRoutersV1PdfAsyncExportType()
 
 if __name__ == '__main__':
     unittest.main()

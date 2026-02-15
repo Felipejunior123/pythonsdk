@@ -15,25 +15,20 @@
 
 import unittest
 
-from templatefox.api.pdf_api import PDFApi
+from templatefox.models.job_status import JobStatus
 
+class TestJobStatus(unittest.TestCase):
+    """JobStatus unit test stubs"""
 
-class TestPDFApi(unittest.TestCase):
-    """PDFApi unit test stubs"""
-
-    def setUp(self) -> None:
-        self.api = PDFApi()
-
-    def tearDown(self) -> None:
+    def setUp(self):
         pass
 
-    def test_create_pdf(self) -> None:
-        """Test case for create_pdf
-
-        Generate PDF from template
-        """
+    def tearDown(self):
         pass
 
+    def testJobStatus(self):
+        """Test JobStatus"""
+        # inst = JobStatus()
 
 if __name__ == '__main__':
     unittest.main()

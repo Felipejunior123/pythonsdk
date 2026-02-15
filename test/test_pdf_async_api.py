@@ -15,29 +15,36 @@
 
 import unittest
 
-from templatefox.api.account_api import AccountApi
+from templatefox.api.pdf_async_api import PDFAsyncApi
 
 
-class TestAccountApi(unittest.TestCase):
-    """AccountApi unit test stubs"""
+class TestPDFAsyncApi(unittest.TestCase):
+    """PDFAsyncApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = AccountApi()
+        self.api = PDFAsyncApi()
 
     def tearDown(self) -> None:
         pass
 
-    def test_get_account(self) -> None:
-        """Test case for get_account
+    def test_create_pdf_async(self) -> None:
+        """Test case for create_pdf_async
 
-        Get account info
+        Generate PDF asynchronously
         """
         pass
 
-    def test_list_transactions(self) -> None:
-        """Test case for list_transactions
+    def test_get_pdf_job_status(self) -> None:
+        """Test case for get_pdf_job_status
 
-        List transactions
+        Get PDF job status
+        """
+        pass
+
+    def test_list_pdf_jobs(self) -> None:
+        """Test case for list_pdf_jobs
+
+        List PDF jobs
         """
         pass
 
